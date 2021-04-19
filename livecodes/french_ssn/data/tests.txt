@@ -22,3 +22,6 @@
 
 # Invalid number of digits
 2950523346023152
+
+# Invalid characters at the start
+ssn 2 84 12 76 451 089 46
