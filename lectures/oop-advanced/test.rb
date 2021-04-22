@@ -3,7 +3,7 @@ require_relative 'fast_food'
 
 puts "Instantiating a restaurant..."
 
-yakiniku = Restaurant.new("Abdul's Yakiniku", "Nerima", "bbq", 30)
+yakiniku = Restaurant.new("Abdul's Yakiniku", "Nerima", "bbq", 30, "Abdul")
 
 puts "#{yakiniku.name} has #{yakiniku.seats} seats."
 

@@ -1,7 +1,7 @@
 require_relative 'chef'
 
 class Restaurant
-  attr_reader :name, :location, :cuisine
+  attr_reader :name, :location, :cuisine, :chef
   attr_accessor :seats
 
   # self refers to the Restaurant class
@@ -9,14 +9,14 @@ class Restaurant
     %w[japanese thai sushi]
   end
 
-  def initialize(name, location, cuisine, seats, chef_name)
+  def initialize(name, location, cuisine, seats, chef_name = nil)
     @name = name # string
     @location = location # string
     @cuisine = cuisine # string
     @seats = seats # integer
 
     # `self` refers to the instance on which the instance method is called
-    @chef = Chef.new(chef_name, self)
+    @chef = Chef.new(chef_name, self) if chef_name
     @reservations = []
   end
 
