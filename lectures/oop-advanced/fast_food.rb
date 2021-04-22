@@ -1,9 +1,8 @@
 require_relative 'restaurant'
 
-class FastFood < Restaurant
+class FastFood < Restaurant # Inherit all instance methods from the Restaurant class
   def initialize(name, location, cuisine, seats, prep_time)
-    super(name, location, cuisine, seats)
-    # Same as calling #initialize(name, location, cuisine, seats) from Restaurant
+    super(name, location, cuisine, seats) # Calls #initialize(name, location, cuisine, seats) from Restaurant (parent class)
 
     @prep_time = prep_time # integer
   end
