@@ -9,21 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @restaurants.each do |restaurant| %>
-      <tr>
-        <td><%= restaurant.name %></td>
-        <td><%= restaurant.user.email %></td>
-        <% if policy(restaurant).show? %>
-          <td><%= link_to 'Show', restaurant %></td>
-        <% end %>
-        <% if policy(restaurant).edit? %>
-          <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-        <% end %>
-        <% if policy(restaurant).destroy? %>
-          <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
+    <%= render @restaurants %>
   </tbody>
 </table>
 <br>
