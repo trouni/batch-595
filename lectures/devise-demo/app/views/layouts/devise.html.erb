@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DeviseDemo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+  </head>
+  <body>
+    <%= render 'shared/flashes' %>
+    <%= render 'shared/navbar' %>
+    <div class="container">
+      <div class="row">
+        <div class="col col-md-6 offset-3">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
