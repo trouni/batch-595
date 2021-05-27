@@ -11,8 +11,11 @@
       <% end %>
       <div id="movies">
         <% @movies.each do |movie| %>
-          <h4><%= movie.title %></h4>
-          <p><%= movie.synopsis %></p>
+          <h4><%= movie.searchable.title %></h4>
+          <p><%= movie.searchable.synopsis %></p>
+          <% if movie.searchable_type == 'Movie' %>
+            <p>Director: <%= movie.searchable.director.last_name %></p>
+          <% end %>
         <% end %>
       </div>
     </div>
