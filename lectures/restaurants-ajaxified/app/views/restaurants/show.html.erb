@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <%= image_tag "http://source.unsplash.com/collection/3099344/1000x500", width: "100%", class: "border shadow mb-5" %>
+      <h3><%= pluralize @restaurant.reviews.size, "review" %></h3>
+      <%= render 'reviews/form', restaurant: @restaurant, review: @review %>
+      <div id="reviews">
+        <% if @restaurant.reviews.any? %>
+          <%= render @restaurant.reviews.order(created_at: :desc) %>
+        <% else %>
+          <h4>Be the first to leave a review...</h4>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <%= render 'restaurants/info', restaurant: @restaurant %>
+    </div>
+  </div>
+</div>
