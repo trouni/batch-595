@@ -17,7 +17,9 @@ ActiveRecord::Schema.define(version: 2021_05_27_140355) do
 
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
+    t.string "description"
     t.string "address"
+    t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

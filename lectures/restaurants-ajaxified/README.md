@@ -22,6 +22,7 @@ Rails controllers can render different formats based on the request’s “Accep
         format.js
       end
     else
+    # ...
   end
 ```
 
