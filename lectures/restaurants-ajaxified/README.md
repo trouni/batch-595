@@ -274,7 +274,7 @@ environment.plugins.prepend('Provide',
 ## HAPPY AJAXIFICATION!
 
 Note:
-To push this app on Heroku from this lectures repository, navigate to the root of the repo and run the following lines:
+To push this app on Heroku from this lectures repo, run the following lines from the root of the repo:
 ```shell
 heroku create --remote heroku_restaurants-ajaxified
 git subtree push --prefix lectures/restaurants-ajaxified heroku_restaurants-ajaxified main
