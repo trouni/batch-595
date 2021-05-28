@@ -1,0 +1,20 @@
+<div data-controller="collapsible-form">
+  <button
+    class="btn btn-outline-primary w-100"
+    data-action="click->collapsible-form#expandDropdown"
+    >Leave a review</button>
+  <%= simple_form_for [ restaurant, review ],
+    remote: true,
+    html: { 'data-collapsible-form-target': 'dropdown' } do |f|
+  %>
+  <%= f.input :content, as: :text, label: "Leave a review for #{restaurant.name}" %>
+  <%= f.button :submit, "Submit", class: 'btn btn-primary' %>
+<% end %>
+<div id="reviews">
+  <% if restaurant.reviews.blank? %>
+    Be the first to leave a review for <%= restaurant.name %>
+  <% else %>
+    <%= render restaurant.reviews.order(created_at: :desc) %>
+  <% end %>
+</div>
+</div>

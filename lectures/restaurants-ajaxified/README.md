@@ -105,7 +105,7 @@ Connect the component to the `collapsible_form` controller by adding a `data-con
 ```
 Set the `data-controller` in a div that contains both:
 - the element listening to an event (the button)
-- the element you want to update (the form)
+- the element you want to update (the dropdown form)
 
 
 ### Data-target
@@ -114,11 +114,11 @@ Set the `data-controller` in a div that contains both:
 
 ```erb
 <%= simple_form_for([ @restaurant, @review ],
-                    html: { data: { collapsible_form_target: 'form' } },
+                    html: { data: { collapsible_form_target: 'dropdown' } },
                     remote: true) do |f| %>
 
 <!-- Simple form will generate a form tag like this: -->
-<form action="..." data-collapsible-form-target="form" ... >
+<form action="..." data-collapsible-form-target="dropdown" ... >
 ```
 
 Syntax: `data-<controller-name>-target="targetName"`
@@ -130,15 +130,15 @@ Syntax: `data-<controller-name>-target="targetName"`
 import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = [ 'form' ];
+  static targets = [ 'dropdown' ];
 
   connect() {
-    console.log(this.formTarget);
+    console.log(this.dropdownTarget);
   }
 }
 ```
 
-`this.formTarget` returns the first one, `this.formTargets` returns them all
+`this.dropdownTarget` returns the first one, `this.dropdownTargets` returns them all
 
 
 ### Connect
@@ -147,12 +147,12 @@ Set the initial state of the form in the `connect()` action.
 
 ```js
 export default class extends Controller {
-  static targets = [ 'form' ];
+  static targets = [ 'dropdown' ];
 
   connect() {
-    this.formTarget.style.height = "0"
-    this.formTarget.style.overflow = "hidden"
-    this.formTarget.style.transition = "height 0.2s ease-in"
+    this.dropdownTarget.style.height = "0"
+    this.dropdownTarget.style.overflow = "hidden"
+    this.dropdownTarget.style.transition = "height 0.2s ease-in"
   }
 }
 ```
@@ -167,7 +167,7 @@ Listening to the `click` event on the button (`addEventListener`):
 
 <div data-controller="collapsible-form">
   <button class="btn btn-outline-primary"
-          data-action="click->collapsible-form#expandForm">Leave a review</button>
+          data-action="click->collapsible-form#expandDropdown">Leave a review</button>
   <!-- [...] -->
 </div>
 ```
@@ -181,9 +181,9 @@ Syntax: `event->controller-name#actionName`
 import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = [ 'form' ];
+  static targets = [ 'dropdown' ];
   // ...
-  expandForm(event) {
+  expandDropdown(event) {
     console.log(event);
   }
 }
@@ -201,8 +201,8 @@ Use data attributes to add settings to your component
 ```
 
 ```js
-expandForm(event) {
-  this.formTarget.style.height = this.element.dataset.expandedHeight
+expandDropdown(event) {
+  this.dropdownTarget.style.height = this.element.dataset.expandedHeight
   event.currentTarget.remove() // Remove the button after expanding the form
 }
 ```
@@ -219,8 +219,8 @@ export default class extends Controller {
   submitOnEnter(event) {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault()
-      this.formTarget.style.height = "0"
-      Rails.fire(this.formTarget, 'submit')
+      this.dropdownTarget.style.height = "0"
+      Rails.fire(this.dropdownTarget, 'submit')
     }
   }
 }
@@ -258,9 +258,9 @@ environment.plugins.prepend('Provide',
 
 ## Stimulus takeaways
 
+- the `data-controller` should wrap the other elements
 - `querySelector` is replaced by `data-<controller-name>-target="targetName"`
-- `addEventListener` is replaced by `data-action`
-- the `data-controller` wraps the other elements
+- `querySelector` + `addEventListener` are replaced by `data-action`
 
 
 ### Stimulus syntax recap
@@ -273,10 +273,11 @@ environment.plugins.prepend('Provide',
 
 ## HAPPY AJAXIFICATION!
 
-
 Note:
-To push this app on Heroku yourself, if you have cloned the lectures repository, navigate to the root of the repo and run the following lines:
+To push this app on Heroku from this lectures repository, navigate to the root of the repo and run the following lines:
 ```shell
 heroku create --remote heroku_restaurants-ajaxified
 git subtree push --prefix lectures/restaurants-ajaxified heroku_restaurants-ajaxified main
+heroku run rails db:migrate db:seed -a heroku_restaurants-ajaxified
+heroku open -a heroku_restaurants-ajaxified
 ```

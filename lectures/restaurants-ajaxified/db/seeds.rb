@@ -1,5 +1,5 @@
 puts 'Creating restaurants and reviews...'
-10.times do
+12.times do
   restaurant = Restaurant.create!({
     name: Faker::Restaurant.name,
     address: Faker::Address.full_address,
